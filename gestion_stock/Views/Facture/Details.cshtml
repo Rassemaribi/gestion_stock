@@ -1,0 +1,174 @@
+﻿@model gestion_stock.Models.Facture
+
+@{
+    ViewData["Title"] = "Facture";
+   
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Facture</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://img.freepik.com/vecteurs-libre/hexagone-fond-abstrait-texture-noire_206725-413.jpg?w=1060&t=st=1701897607~exp=1701898207~hmac=3b8922591111dd2fb2e2b2e48c2322cd26e7536b68940762ef1051b508b583aa');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .custom-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            color: black;
+            width: 80%;
+            margin: auto;
+            margin-top: 60px;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .invoice-table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .invoice-total {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .custom-navbar {
+            background-color: rgba(255, 255, 255, 0);
+            color: #fff;
+            padding: 0px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+            .nav-link:hover {
+                color: #ffc107;
+            }
+
+        .logout-btn {
+            margin-left: auto;
+        }
+
+        .action-button {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .edit-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        h1 {
+            color: goldenrod;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+       
+
+      }
+    </style>
+</head>
+<body>
+    <div class="custom-navbar">
+        <div class="nav-links">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+            <a class="nav-link" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+            <a class="nav-link" asp-area="" asp-controller="Produit" asp-action="Index">Produits</a>
+            <a class="nav-link" asp-area="" asp-controller="Fournisseur" asp-action="Index">Fournisseurs</a>
+            <a class="nav-link" asp-area="" asp-controller="Facture" asp-action="Index">Factures</a>
+        </div>
+        <form class="form-inline logout-btn" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </div>
+
+    <div class="custom-container">
+        <div class="invoice-header">
+            <h2>Facture</h2>
+        </div>
+
+        <div class="invoice-details">
+            <dl class="row">
+                <dt class="col-sm-3">Date de Vente:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.DateVente)</dd>
+
+                <dt class="col-sm-3">Produit:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.NomProduit)</dd>
+
+                <dt class="col-sm-3">Client:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.NomClient)</dd>
+
+                <dt class="col-sm-3">ID du Produit:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Idproduit)</dd>
+
+                <dt class="col-sm-3">ID du Client:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model. Idclient)</dd>
+            </dl>
+        </div>
+
+        <table class="invoice-table">
+            <tr>
+                <th>Quantité</th>
+                <th>Prix Unitaire</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>@Html.DisplayFor(model => model.NombrePiecesAchete)</td>
+                <td>@Html.DisplayFor(model => model.Prix)</td>
+                <td>@Html.DisplayFor(model => model.MontantTotalAchat)</td>
+            </tr>
+        </table>
+
+        <div class="invoice-total">
+            Total: @Html.DisplayFor(model => model.MontantTotalAchat)
+        </div>
+
+        <div>
+            <a class="action-button edit-button" asp-action="Edit" asp-route-id="@Model?.IdFacture">Modifier</a>
+            <br />
+            <br />
+            <a asp-action="Index">Retour à la liste</a>
+        </div>
+    </div>
+</body>
+</html>

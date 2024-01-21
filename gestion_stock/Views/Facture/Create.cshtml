@@ -1,0 +1,139 @@
+﻿@model gestion_stock.Models.Facture
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url('https://img.freepik.com/vecteurs-libre/fond-noir-motif-clair-fond-noir_483537-4203.jpg?w=1060&t=st=1701898686~exp=1701899286~hmac=3f30b13991bcd8a7ed18717a7547dfdeeaef6e029b7a6e425bf71b2a4286a7bf');
+            background-size: cover;
+        }
+
+        .custom-container {
+            background-color: rgba(200, 200, 200, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            color: black;
+            width: 150%;
+            margin: auto;
+            margin-top: 40px;
+        }
+
+        .custom-navbar {
+            background-color: rgba(225, 225, 225, 0);
+            color: #fff;
+            padding: 0px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+            .nav-link:hover {
+                color: #ffc107;
+            }
+
+        .logout-btn {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-navbar">
+        <div class="nav-links">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+            <a class="nav-link" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+            <a class="nav-link" asp-area="" asp-controller="Produit" asp-action="Index">Produits</a>
+            <a class="nav-link" asp-area="" asp-controller="Fournisseur" asp-action="Index">Fournisseurs</a>
+            <a class="nav-link" asp-area="" asp-controller="Facture" asp-action="Index">Factures</a>
+        </div>
+        <form class="form-inline logout-btn" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <form asp-action="Create" class="custom-container">
+            <h2 class="mt-1">Créer un nouveau Facture</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="DateVente" class="control-label">Date de Vente</label>
+                <input asp-for="DateVente" class="form-control" />
+                <span asp-validation-for="DateVente" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Idproduit" class="control-label">Produit</label>
+                <select asp-for="Idproduit" asp-items="@(new SelectList(ViewBag.ProduitList,  "ID", "ID"))" class="form-control">
+                    <option value="">Sélectionner un produit</option>
+                </select>
+                <span asp-validation-for="Idproduit" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NomProduit" class="control-label">NomProduit</label>
+                <select asp-for="NomProduit" asp-items="@(new SelectList(ViewBag.ProduitList, "Nom", "Nom"))" class="form-control">
+                    <option value="">Sélectionner un produit</option>
+                </select>
+                <span asp-validation-for="NomProduit" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Idclient" class="control-label">Client</label>
+                <select asp-for="Idclient" asp-items="@(new SelectList(ViewBag.ClientList, "Id","Id"))" class="form-control">
+                    <option value="">Sélectionner un client</option>
+                </select>
+                <span asp-validation-for="Idclient" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NomClient" class="control-label">NomClient</label>
+                <select asp-for="NomClient" asp-items="@(new SelectList(ViewBag.ClientList, "Nom", "Nom"))" class="form-control">
+                    <option value="">Sélectionner un client</option>
+                </select>
+                <span asp-validation-for="NomClient" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Prix" class="control-label">Prix Produit</label>
+                <select asp-for="Prix" asp-items="@(new SelectList(ViewBag.ProduitList, "ID", "Prix"))" class="form-control">
+                    <option value="">Sélectionner un prix</option>
+                </select>
+                <span asp-validation-for="Prix" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NombrePiecesAchete" class="control-label">Nombre de Pièces Achetées</label>
+                <input asp-for="NombrePiecesAchete" class="form-control" />
+                <span asp-validation-for="NombrePiecesAchete" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

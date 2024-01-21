@@ -1,0 +1,188 @@
+﻿@model IEnumerable<gestion_stock.Models.Fournisseur>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
+
+    <style>
+        /* Styles pour le fond d'écran */
+        body {
+            background-image: url('https://img.freepik.com/vecteurs-libre/conception-banniere-plancher-particules-noires_1017-17499.jpg?w=1380&t=st=1701896401~exp=1701897001~hmac=7e8c5b4682bc3e1cf96a1f669f8cca214091801e9c32cc724634cd13acad038f');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .custom-navbar {
+            background-color: rgba(255, 255, 255, 0);
+            color: #fff;
+            padding: 0px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #fff;
+            margin: 15px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+            .nav-link:hover {
+                color: #ffc107;
+            }
+
+        .logout-btn {
+            margin-left: auto;
+        }
+        /* Styles pour la table et les boutons d'action */
+        .table-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .table-container table {
+                background-color: #ffffff;
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .table-container th, .table-container td {
+                padding: 12px;
+                border: 1px solid #dee2e6;
+                text-align: left;
+            }
+
+        .action-button {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .edit-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .details-button {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .create-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+        h1{
+            color:bisque;
+        }
+
+        .search-form {
+            margin-left: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-navbar">
+        <div class="nav-links">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+            <a class="nav-link" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+            <a class="nav-link" asp-area="" asp-controller="Produit" asp-action="Index">Produits</a>
+            <a class="nav-link" asp-area="" asp-controller="Fournisseur" asp-action="Index">Fournisseurs</a>
+            <a class="nav-link" asp-area="" asp-controller="Facture" asp-action="Index">Factures</a>
+        </div>
+        <form class="form-inline logout-btn" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </div>
+    <hr />
+    <h1>Tableau Des Fournisseurs</h1>
+    <br />
+
+    <p>
+        <a class="action-button create-button" asp-action="Create">Créer un nouveau</a>
+    </p>
+
+    <div class="table-container">
+        <form asp-controller="Fournisseur" asp-action="Index" method="get" class="form-inline">
+            <div class="form-group">
+                <label for="searchNom">Rechercher par Nom :</label>
+                <input type="text" class="form-control" id="searchString" name="searchString" placeholder="Entrez le nom du fournisseur">
+
+            </div>
+            <div class="search-form">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </form>
+        <table class="table w3-table-all w3-hoverable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nom)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Prenom)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NumTel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Adresse)
+                    </th>
+                    <th>               Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="w3-hover-black">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prenom)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumTel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adresse)
+                        </td>
+                        <td>
+                            <a class="action-button edit-button" asp-action="Edit" asp-route-id="@item.Id">Modifier</a>|
+                            <a class="action-button details-button" asp-action="Details" asp-route-id="@item.Id">Détails</a>|
+                            <a class="action-button delete-button" asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

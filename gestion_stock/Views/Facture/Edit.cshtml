@@ -1,0 +1,137 @@
+﻿@model gestion_stock.Models.Facture
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: url('https://img.freepik.com/vecteurs-premium/connexion-au-reseau-mondial-points-lignes-vectoriels-abstraits-triangles-fond-noir-concept-science-technologie-numerique-donnees-volumineuses-developpement-technologies-information_710001-686.jpg?w=1060');
+            background-size: cover;
+        }
+
+        .custom-container {
+            background-color: rgba(200, 200, 200, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            color: black;
+            width: 150%;
+            margin: auto;
+            margin-top: 40px;
+        }
+
+        .custom-navbar {
+            background-color: rgba(255, 255, 255, 0);
+            color: #fff;
+            padding: 0px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+            .nav-link:hover {
+                color: #ffc107;
+            }
+
+        .logout-btn {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-navbar">
+        <div class="nav-links">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+            <a class="nav-link" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+            <a class="nav-link" asp-area="" asp-controller="Produit" asp-action="Index">Produits</a>
+            <a class="nav-link" asp-area="" asp-controller="Fournisseur" asp-action="Index">Fournisseurs</a>
+            <a class="nav-link" asp-area="" asp-controller="Facture" asp-action="Index">Factures</a>
+        </div>
+        <form class="form-inline logout-btn" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </div>
+    <hr />
+    <div class="col-md-4">
+        <div class="custom-container">
+            <h1>Edit</h1>
+            <h4>Facture</h4>
+            <hr />
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdFacture" />
+                <div class="form-group">
+                    <label asp-for="DateVente" class="control-label">Date de Vente</label>
+                    <input asp-for="DateVente" class="form-control" />
+                    <span asp-validation-for="DateVente" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Idproduit" class="control-label">Produit</label>
+                    <input asp-for="Idproduit" class="form-control" />
+                    <span asp-validation-for="Idproduit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Idclient" class="control-label">Client</label>
+                    <input asp-for="Idclient" class="form-control" />
+                    <span asp-validation-for="Idclient" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NomProduit" class="control-label">NomProduit</label>
+                    <input asp-for="NomProduit" class="form-control" />
+                    <span asp-validation-for="NomProduit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NomClient" class="control-label">NomClient</label>
+                    <input asp-for="NomClient" class="form-control" />
+                    <span asp-validation-for="NomClient" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Prix" class="control-label">Prix</label>
+                    <input asp-for="Prix" class="form-control" />
+                    <span asp-validation-for="Prix" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NombrePiecesAchete" class="control-label">Nombre de Pièces Achetées</label>
+                    <input asp-for="NombrePiecesAchete" class="form-control" />
+                    <span asp-validation-for="NombrePiecesAchete" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MontantTotalAchat" class="control-label">Montant Total Achat</label>
+                    <input asp-for="MontantTotalAchat" class="form-control" />
+                    <span asp-validation-for="MontantTotalAchat" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+            <div>
+                <a asp-action="Index">Retour à la liste</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

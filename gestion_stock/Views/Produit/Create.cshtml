@@ -1,0 +1,115 @@
+﻿@model gestion_stock.Models.Produit
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: url('https://img.freepik.com/vecteurs-libre/fond-noir-motif-clair-fond-noir_483537-4203.jpg?w=1060&t=st=1701898686~exp=1701899286~hmac=3f30b13991bcd8a7ed18717a7547dfdeeaef6e029b7a6e425bf71b2a4286a7bf');
+            background-size: cover;
+        }
+
+        .custom-container {
+            background-color: rgba(200, 200, 200, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            color: black;
+            width: 150%;
+            margin: auto;
+            margin-top: 40px;
+        }
+
+        .custom-navbar {
+            background-color: rgba(225, 225, 225, 0);
+            color: #fff;
+            padding: 0px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+            .nav-link:hover {
+                color: #ffc107;
+            }
+
+        .logout-btn {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-navbar">
+        <div class="nav-links">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+            <a class="nav-link" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+            <a class="nav-link" asp-area="" asp-controller="Produit" asp-action="Index">Produits</a>
+            <a class="nav-link" asp-area="" asp-controller="Fournisseur" asp-action="Index">Fournisseurs</a>
+            <a class="nav-link" asp-area="" asp-controller="Facture" asp-action="Index">Factures</a>
+        </div>
+        <form class="form-inline logout-btn" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <form asp-action="Create" class="custom-container">
+            <h2 class="mt-1">Créer un nouveau Produit</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label"></label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lib" class="control-label"></label>
+                <input asp-for="Lib" class="form-control" />
+                <span asp-validation-for="Lib" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prix" class="control-label"></label>
+                <input asp-for="Prix" class="form-control" />
+                <span asp-validation-for="Prix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantite" class="control-label"></label>
+                <input asp-for="Quantite" class="form-control" />
+                <span asp-validation-for="Quantite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idservice" class="control-label">Fournisseur</label>
+                <select asp-for="Idservice" class="form-control">
+                    @foreach (var fournisseur in ViewBag.FournisseurList)
+                    {
+                        <option value="@fournisseur.Id">@fournisseur.Nom</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

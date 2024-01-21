@@ -1,0 +1,107 @@
+﻿@model gestion_stock.Models.Facture
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Supprimer la Facture</title>
+
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/photos-gratuite/grunge-detaillee-mur-briques-fond_1048-4217.jpg?w=900&t=st=1701897856~exp=1701898456~hmac=e7f9365a2d4e496bc9512663c968caa1959ee1c9696f896daa16389d73d94128');
+            background-size: cover;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #dc3545;
+        }
+
+        h3 {
+            color: #343a40;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 700px; /* Ajustez la largeur selon vos besoins */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Supprimer la Facture</h1>
+        <h3>Êtes-vous sûr de vouloir supprimer ceci ?</h3>
+        <hr />
+        <h4>Facture</h4>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DateVente)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DateVente)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Idproduit)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Idproduit)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Idclient)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Idclient)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NomProduit)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NomProduit)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NomClient)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NomClient)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Prix)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Prix)
+            </dd>
+            <dt class="col-sm-2">
+                NombrePieces
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NombrePiecesAchete)
+            </dd>
+            <dt class="col-sm-2">
+               MontantTotal
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.MontantTotalAchat)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="IdFacture" />
+            <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+        </form>
+        <br />
+        <a asp-action="Index">Retour à la liste</a>
+    </div>
+
+</body>
+</html>

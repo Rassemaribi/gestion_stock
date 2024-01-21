@@ -1,0 +1,92 @@
+﻿@model gestion_stock.Models.Client
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/photos-gratuite/grunge-detaillee-mur-briques-fond_1048-4217.jpg?w=900&t=st=1701897856~exp=1701898456~hmac=e7f9365a2d4e496bc9512663c968caa1959ee1c9696f896daa16389d73d94128');
+            background-size: cover;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #dc3545;
+        }
+
+        h3 {
+            color: #343a40;
+        }
+
+
+
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 700px; /* Ajustez la largeur selon vos besoins */
+        }
+    </style>
+</head>
+
+<body>
+
+   
+
+    <div class="container">
+        <h1>Supprimer le Client</h1>
+        <h3>Êtes-vous sûr de vouloir supprimer ceci ?</h3>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Prenom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Prenom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cin)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Cin)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Tel)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Tel)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+            <a asp-action="Index">Retour à la liste</a>
+        </form>
+    </div>
+
+</body>
+</html>

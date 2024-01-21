@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Les balises meta, title, styles, etc. vont ici -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - My App</title>
+
+    <!-- Les liens vers les fichiers CSS vont ici -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    
+
+    <!-- La section Scripts va ici -->
+    @RenderSection("Scripts", false)
+
+    <div class="container">
+        <!-- Le contenu de la page va ici -->
+        @RenderBody()
+    </div>
+
+    <!-- Les scripts JavaScript vont ici -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+</html>

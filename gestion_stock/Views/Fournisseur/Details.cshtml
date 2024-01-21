@@ -1,0 +1,140 @@
+﻿@model gestion_stock.Models.Fournisseur
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: url('https://img.freepik.com/vecteurs-libre/hexagone-fond-abstrait-texture-noire_206725-413.jpg?w=1060&t=st=1701897607~exp=1701898207~hmac=3b8922591111dd2fb2e2b2e48c2322cd26e7536b68940762ef1051b508b583aa');
+            background-size: cover;
+        }
+
+        .custom-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 60%;
+            margin: auto;
+            margin-top: 60px;
+        }
+
+        .custom-navbar {
+            background-color: rgba(255, 255, 255, 0);
+            color: #fff;
+            padding: 0px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+            .nav-link:hover {
+                color: #ffc107;
+            }
+
+        .logout-btn {
+            margin-left: auto;
+        }
+
+        h1 {
+            color:goldenrod;
+            text-align: center; /* Centrer le texte */
+            margin-bottom: 20px; /* Ajout de marge en bas */
+        }
+
+        .col-sm-2 {
+            font-weight: bold;
+        }
+
+        .action-button {
+            padding: 6px 12px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .edit-button {
+            background-color: #28a745;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="custom-navbar">
+            <div class="nav-links">
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+                <a class="nav-link" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+                <a class="nav-link" asp-area="" asp-controller="Produit" asp-action="Index">Produits</a>
+                <a class="nav-link" asp-area="" asp-controller="Fournisseur" asp-action="Index">Fournisseurs</a>
+                <a class="nav-link" asp-area="" asp-controller="Facture" asp-action="Index">Factures</a>
+            </div>
+            <form class="form-inline logout-btn" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link">Logout</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="custom-container">
+        <h1>Détails du Fournisseur : </h1>
+        <h2> @Html.DisplayFor(model => model.Nom)</h2>
+        <h3>ID: @Html.DisplayFor(model => model.Id)</h3>
+        <hr />
+ 
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Prenom)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Prenom)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NumTel)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumTel)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Adresse)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Adresse)
+            </dd>
+        </dl>
+        <a class="action-button edit-button" asp-action="Edit" asp-route-id="@Model?.Id">Modifier</a>
+        <br />
+        <br />
+        <a asp-action="Index">Retour à la liste</a>
+    </div>
+  
+</body>
+</html>

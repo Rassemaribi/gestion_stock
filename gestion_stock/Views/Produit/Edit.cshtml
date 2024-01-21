@@ -1,0 +1,124 @@
+﻿@model gestion_stock.Models.Produit
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: url('https://img.freepik.com/vecteurs-premium/connexion-au-reseau-mondial-points-lignes-vectoriels-abstraits-triangles-fond-noir-concept-science-technologie-numerique-donnees-volumineuses-developpement-technologies-information_710001-686.jpg?w=1060');
+            background-size: cover;
+        }
+
+        .custom-container {
+            background-color: rgba(200, 200, 200, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            color: black;
+            width: 150%;
+            margin: auto;
+            margin-top: 40px;
+        }
+
+        .custom-navbar {
+            background-color: rgba(255, 255, 255, 0); /* Le quatrième paramètre (0) contrôle la transparence du blanc */
+            color: #fff;
+            padding: 0px;
+            margin: auto;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+            .nav-link:hover {
+                color: #ffc107;
+            }
+
+        .logout-btn {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-navbar">
+        <div class="nav-links">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+            <a class="nav-link" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+            <a class="nav-link" asp-area="" asp-controller="Produit" asp-action="Index">Produits</a>
+            <a class="nav-link" asp-area="" asp-controller="Fournisseur" asp-action="Index">Fournisseurs</a>
+            <a class="nav-link" asp-area="" asp-controller="Facture" asp-action="Index">Factures</a>
+        </div>
+        <form class="form-inline logout-btn" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </div>
+    <hr />
+    <div class="col-md-4 ">
+        <form asp-action="Edit" class="custom-container">
+            <h2 class="mt-1">Éditer un produit</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label">Nom</label>
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lib" class="control-label">Libellé</label>
+                <input asp-for="Lib" class="form-control" />
+                <span asp-validation-for="Lib" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prix" class="control-label">Prix</label>
+                <input asp-for="Prix" class="form-control" />
+                <span asp-validation-for="Prix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantite" class="control-label">Quantité</label>
+                <input asp-for="Quantite" class="form-control" />
+                <span asp-validation-for="Quantite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idservice" class="control-label">Fournisseur</label>
+                <select asp-for="Idservice" class="form-control">
+                    @foreach (var fournisseur in ViewBag.FournisseurList)
+                    {
+                        <option value="@fournisseur.Id">@fournisseur.Nom</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enregistrer" class="btn btn-primary" />
+            </div>
+            <hr />
+            <div class="mt-1">
+                <a asp-action="Index">Retour à la liste</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

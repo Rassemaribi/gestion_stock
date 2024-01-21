@@ -1,0 +1,102 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background: url('https://img.freepik.com/photos-premium/reseau-cybersecurite-icone-cadenas-mise-reseau-technologie-internet-homme-affaires-protegeant-informations-personnelles-tablette-interface-virtuelle-concept-confidentialite-protection-donnees-rgpd-ue_150455-15308.jpg?w=1380');
+            background-size: cover;
+        }
+
+        .register-confirmation-container {
+            background-color: rgba(200, 200, 200, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            color: black;
+            width: 150%; /* Largeur augmentée */
+            margin: auto; /* Centré horizontalement */
+            margin-top: 50px; /* Espacement du haut */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        #confirm-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            #confirm-link:hover {
+                text-decoration: underline;
+            }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: white;
+        }
+
+            .navbar-dark .navbar-nav .nav-link:hover {
+                color: black;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://localhost:44301/Identity/Account/Login?ReturnUrl=%2F">Login</a>
+
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="register-confirmation-container">
+                    <h1>@ViewData["Title"]</h1>
+                    @{
+                        if (@Model.DisplayConfirmAccountLink)
+                        {
+                            <p>
+                                Cette application n'a actuellement pas d'expéditeur de courrier électronique réel enregistré. Consultez <a href="https://aka.ms/aspaccountconf">ces documents</a> pour savoir comment configurer un véritable expéditeur de courrier électronique.
+                                Normalement, cela serait envoyé par e-mail : <a id="confirm-link" href="@Model.EmailConfirmationUrl">Cliquez ici pour confirmer votre compte</a>
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                Veuillez vérifier votre e-mail pour confirmer votre compte.
+                            </p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

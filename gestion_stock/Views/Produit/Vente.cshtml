@@ -1,0 +1,146 @@
+﻿@model gestion_stock.Models.Produit
+@{
+    ViewData["Title"] = "Vente";
+}
+<style>
+    body {
+        background-image: url('https://www.manutan.fr/blog/wp-content/uploads/2023/06/A00232P2-scaled.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+        margin: 0;
+    }
+
+    h1 {
+        color: #fff;
+    }
+
+    .main-container {
+        margin: auto;
+        max-width: 800px; /* Ajustez la largeur selon vos besoins */
+        background-color: rgba(200, 200, 200, 0.8);
+        padding: 20px;
+        border-radius: 20px;
+        color: black;
+        margin-top: 40px;
+    }
+
+    .custom-navbar {
+        background-color: rgba(255, 255, 255, 0);
+        color: #fff;
+        padding: 0px;
+        margin: auto;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-link {
+        color: #fff;
+        margin: 15px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+        .nav-link:hover {
+            color: #ffc107;
+        }
+
+    .logout-btn {
+        margin-left: auto;
+    }
+
+    .table-container {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .table-container table {
+            background-color: #ffffff;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-container th, .table-container td {
+            padding: 12px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+
+    .action-button {
+        padding: 6px 12px;
+        margin-right: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .edit-button {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+</style>
+<div class="custom-navbar">
+    <div class="nav-links">
+        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
+        <a class="nav-link" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+        <a class="nav-link" asp-area="" asp-controller="Produit" asp-action="Index">Produits</a>
+        <a class="nav-link" asp-area="" asp-controller="Fournisseur" asp-action="Index">Fournisseurs</a>
+        <a class="nav-link" asp-area="" asp-controller="Facture" asp-action="Index">Factures</a>
+    </div>
+    <div class="custom-container"></div>
+    <div class="logout-btn">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+            <button type="submit" class="nav-link btn btn-link">Logout</button>
+        </form>
+    </div>
+</div>
+<hr />
+
+<div class="main-container">
+    <h1>Vente</h1>
+
+    <form asp-controller="Produit" asp-action="Vente" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="ID" />
+        <div class="form-group">
+            <p>Saisir La Quantité à Vendre</p>
+            <br />
+            <label asp-for="quantiteVendue">Quantité à vendre</label>
+            <br />
+            <input asp-for="quantiteVendue" class="form-control" />
+            <span asp-validation-for="quantiteVendue" class="text-danger"></span>
+        </div>
+        <br />
+        <button type="submit" class="action-button edit-button">Vendre</button>
+        <br />
+        <a asp-action="Index">Retour à la liste</a>
+    </form>
+
+    @if (TempData["MontantTotal"] != null)
+    {
+        <div class="alert alert-success">
+            Montant total de la vente : @double.Parse(TempData["MontantTotal"] as string)
+        </div>
+    }
+</div>
+<script>
+    // JavaScript pour afficher l'alerte lorsque le montant total est présent dans TempData
+    document.addEventListener("DOMContentLoaded", function () {
+        var montantTotal = "@TempData["MontantTotal"]";
+
+        if (montantTotal) {
+            alert("Montant total de la vente : " + montantTotal);
+        }
+    });
+</script>
